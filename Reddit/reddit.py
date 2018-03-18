@@ -60,11 +60,7 @@ class hots_sub(object):
             return self._links
     
     def export_links_to_xlsx(self):
-        df = pd.DataFrame(columns=['link', 'title', 'created'])
-
-        for item in self._links:
-            app = pd.DataFrame(item, index=[len(self._links)], columns=['link', 'title', 'created'])
-            df = df.append(app)
+        df = pd.DataFrame(self._links)
         writer = pd.ExcelWriter('links.xlsx')
         df.to_excel(writer, 'Sheet1')
         writer.save()
